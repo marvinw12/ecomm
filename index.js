@@ -1,9 +1,6 @@
 const express = require("express");
 const cookieSession = require("cookie-session");
-const usersRepo = require("./repositories/users");
-const users = require("./repositories/users");
-const { reset } = require("nodemon");
-const { comparePasswords } = require("./repositories/users");
+const authRouter = require("./routes/admin/auth");
 
 const app = express();
 
@@ -18,6 +15,8 @@ app.use(
     keys: ["key1"],
   })
 );
+
+app.use(authRouter);
 
 app.listen(3000, () => {
   console.log("Listening");
